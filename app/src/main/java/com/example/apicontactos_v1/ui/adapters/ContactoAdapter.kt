@@ -13,8 +13,8 @@ import com.example.apicontactos_v1.models.Contacto
 class ContactoAdapter(
     private var contactList: List<Contacto>,
     var onContactClick: (Contacto) -> Unit,
-    var onContactDelete: (Long) -> Unit,
-    var onContactUpdate: (Long) -> Unit
+    val onContactDelete: (Long) -> Unit,
+    val onContactUpdate: (Contacto) -> Unit
 ) : RecyclerView.Adapter<ContactoAdapter.ContactoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactoViewHolder {
@@ -26,10 +26,8 @@ class ContactoAdapter(
         val contacto = contactList[position]
         holder.bind(contacto)
         holder.itemView.setOnClickListener { onContactClick(contacto) }
-
-        // Set the click listener for the delete button
-        holder.btnDelete.setOnClickListener { onContactDelete(contacto.id!!) }
-        holder.btnEditar.setOnClickListener { onContactUpdate(contacto.id!!)}
+        holder.btnDelete.setOnClickListener { onContactDelete(contacto.id ?: -1) }
+        holder.btnEditar.setOnClickListener { onContactUpdate(contacto) }
     }
 
     override fun getItemCount(): Int = contactList.size
@@ -42,12 +40,18 @@ class ContactoAdapter(
     class ContactoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tvNombreApellido: TextView = view.findViewById(R.id.tvNombreApellido)
         private val tvEmpresa: TextView = view.findViewById(R.id.tvEmpresa)
+        private val tvTelefono: TextView = view.findViewById(R.id.tvTelefono)
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
         val btnEditar: ImageView = view.findViewById(R.id.btnEditar)
 
         fun bind(contacto: Contacto) {
             tvNombreApellido.text = "${contacto.name} ${contacto.last_name}"
             tvEmpresa.text = contacto.company ?: "Sin empresa"
+            tvTelefono.text = if (contacto.phones.isNotEmpty()) {
+                contacto.phones.joinToString(separator = ", ") { it.number }
+            } else {
+                "Sin Teléfonos"
+            }
         }
     }
 }

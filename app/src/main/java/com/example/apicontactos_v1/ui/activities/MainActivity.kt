@@ -30,6 +30,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ContactoFormActivity::class.java)
             startActivity(intent)
         }
+        val adapter = binding.rvContactos.adapter as ContactoAdapter
+        adapter.onContactClick = { contacto ->
+            val intent = Intent(this, ContactoFormActivity::class.java).apply {
+                putExtra("contacto", contacto) // Pasar el contacto seleccionado
+            }
+            startActivity(intent)
+        }
+
+
     }
 
 
@@ -38,17 +47,17 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = ContactoAdapter(
                 arrayListOf(),
-                onContactClick = { contactoId ->
+                onContactClick = { contacto ->
                     val intent = Intent(this@MainActivity, DetalleContactoActivity::class.java)
-                    intent.putExtra("contacto", contactoId) // Pasa el contacto completo para usar en el nuevo formulario
-                    startActivity(intent) // Inicia el nuevo Activity de detalles
+                    intent.putExtra("contacto", contacto)
+                    startActivity(intent)
                 },
                 onContactDelete = { contactId ->
                     viewModel.deleteContact(contactId)
                 },
-                onContactUpdate = { contactoId ->
+                onContactUpdate = { contacto ->
                     val intent = Intent(this@MainActivity, ContactoFormActivity::class.java)
-                    intent.putExtra("contacto", contactoId) // Pass the contact for editing
+                    intent.putExtra("contacto", contacto)
                     startActivity(intent)
                 }
             )

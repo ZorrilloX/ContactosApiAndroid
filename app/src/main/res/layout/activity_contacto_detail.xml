@@ -33,8 +33,10 @@
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="Nombre del contacto"
-        android:layout_marginTop="16dp"/>
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <!-- Teléfonos -->
     <TextView
@@ -53,8 +55,8 @@
         android:id="@+id/buttonAddPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar teléfono"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:text="+ Agregar teléfono" />
 
     <!-- Emails -->
     <TextView
@@ -73,8 +75,8 @@
         android:id="@+id/buttonAddEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar correo"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:text="+ Agregar correo" />
 
     <!-- Etiquetas -->
     <TextView
@@ -94,8 +96,8 @@
         android:id="@+id/buttonAddTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar etiqueta"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:text="+ Agregar etiqueta" />
 
     <!-- Botones de acción -->
     <LinearLayout
