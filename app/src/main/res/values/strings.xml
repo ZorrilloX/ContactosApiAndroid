@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ApiContactos-v1</string>
+    <string name="nombre_apellido">Nombre Apellido</string>
+    <string name="empresa">Empresa</string>
+    <string name="edit_contact">Editar contacto</string>
+
+</resources>

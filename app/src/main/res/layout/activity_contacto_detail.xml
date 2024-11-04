@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Imagen de perfil -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@android:drawable/ic_menu_camera" />
+
+        <Button
+            android:id="@+id/buttonUploadPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subir foto"
+            android:layout_below="@id/imageViewProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"/>
+    </RelativeLayout>
+
+    <!-- Nombre del contacto -->
+    <TextView
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del contacto"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Teléfonos -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teléfonos"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/layoutPhoneNumbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/buttonAddPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar teléfono"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Emails -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correos electrónicos"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/layoutEmails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/buttonAddEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar correo"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Etiquetas -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Etiquetas"
+        android:layout_marginTop="16dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/buttonAddTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar etiqueta"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Botones de acción -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver" />
+    </LinearLayout>
+</LinearLayout>
