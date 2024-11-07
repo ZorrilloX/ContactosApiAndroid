@@ -3,6 +3,7 @@ package com.example.apicontactos_v1.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,22 @@ class MainActivity : AppCompatActivity() {
         setupEventListeners()
         setupObservers()
         viewModel.loadContacts()
+
+        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    viewModel.searchContact(it)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    viewModel.searchContact(it)
+                }
+                return true
+            }
+        })*/
     }
 
     private fun setupEventListeners() {
@@ -32,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = binding.rvContactos.adapter as ContactoAdapter
         adapter.onContactClick = { contacto ->
-            val intent = Intent(this, ContactoFormActivity::class.java).apply {
+            val intent = Intent(this, DetalleContactoActivity::class.java).apply {
                 putExtra("contacto", contacto) // Pasar el contacto seleccionado
             }
             startActivity(intent)

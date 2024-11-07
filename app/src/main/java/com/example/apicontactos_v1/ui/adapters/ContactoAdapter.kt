@@ -1,4 +1,4 @@
-// ContactoAdapter.kt
+
 package com.example.apicontactos_v1.ui.adapters
 
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.apicontactos_v1.R
 import com.example.apicontactos_v1.models.Contacto
 
@@ -43,15 +44,21 @@ class ContactoAdapter(
         private val tvTelefono: TextView = view.findViewById(R.id.tvTelefono)
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
         val btnEditar: ImageView = view.findViewById(R.id.btnEditar)
+        val mvFoto: ImageView = view.findViewById(R.id.mvFoto)
 
         fun bind(contacto: Contacto) {
             tvNombreApellido.text = "${contacto.name} ${contacto.last_name}"
             tvEmpresa.text = contacto.company ?: "Sin empresa"
             tvTelefono.text = if (contacto.phones.isNotEmpty()) {
-                contacto.phones.joinToString(separator = ", ") { it.number }
+                contacto.phones.joinToString(separator = ", ") { it.number }.toString().toString()
             } else {
                 "Sin Teléfonos"
             }
+            val imageUrl = contacto.profile_picture ?: R.drawable.ic_launcher_foreground
+            Glide.with(mvFoto.context)
+                .load(imageUrl)
+                .into(mvFoto)
+
         }
     }
 }

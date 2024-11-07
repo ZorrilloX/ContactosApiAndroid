@@ -4,12 +4,24 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Telefono(
-    var number: String
+    val id: Long?,
+    val number: String,
+    val persona_id: Long?,
+    val label: String
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(parcel.readString() ?: "")
+
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readString() ?: "",
+        parcel.readLong(),
+        parcel.readString() ?: ""
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id ?: -1L)  // Escribe el id, o un valor por defecto
         parcel.writeString(number)
+        parcel.writeLong(persona_id ?: -1L)
+        parcel.writeString(label)
     }
 
     override fun describeContents(): Int {

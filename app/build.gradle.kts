@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
