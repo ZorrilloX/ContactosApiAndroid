@@ -3,6 +3,7 @@ package com.example.apicontactos_v1.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,22 @@ class MainActivity : AppCompatActivity() {
         setupEventListeners()
         setupObservers()
         viewModel.loadContacts()
+
+        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    viewModel.searchContact(it)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    viewModel.searchContact(it)
+                }
+                return true
+            }
+        })*/
     }
 
     private fun setupEventListeners() {

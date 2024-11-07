@@ -28,7 +28,7 @@ class   ContactoFormActivity : AppCompatActivity() {
             binding.etState.setText(it.state)
         }
 
-        // Configura el botón de guardar
+
         binding.btnSave.setOnClickListener {
             val newContacto = Contacto(
                 id = contacto?.id, // Mantener el ID si estamos actualizando
@@ -41,15 +41,13 @@ class   ContactoFormActivity : AppCompatActivity() {
             )
 
             if (contacto == null) {
-                // Crear nuevo contacto
                 viewModel.addContact(newContacto)
                 Log.d("ContactoFormActivity", "Creando nuevo contacto: $newContacto")
             } else {
-                // Actualizer contacto existente
                 viewModel.updateContact(newContacto)
                 Log.d("ContactoFormActivity", "Actualizando contacto: $newContacto")
             }
-            finish() // Termina la actividad
+            finish()
         }
 
     }
