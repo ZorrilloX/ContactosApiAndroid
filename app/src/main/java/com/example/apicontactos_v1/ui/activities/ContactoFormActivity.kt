@@ -8,7 +8,7 @@ import com.example.apicontactos_v1.databinding.ActivityContactoFormBinding
 import com.example.apicontactos_v1.models.Contacto
 import com.example.apicontactos_v1.ui.viewmodels.ContactosViewModel
 
-class ContactoFormActivity : AppCompatActivity() {
+class   ContactoFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContactoFormBinding
     private val viewModel: ContactosViewModel by viewModels()
 
@@ -18,7 +18,7 @@ class ContactoFormActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Cargar datos si estamos en modo edición
-        val contacto = intent.getParcelableExtra<Contacto>(/* name = */ "contacto")
+        val contacto = intent.getParcelableExtra<Contacto>("contacto")
         contacto?.let {
             binding.etName.setText(it.name)
             binding.etLastName.setText(it.last_name)

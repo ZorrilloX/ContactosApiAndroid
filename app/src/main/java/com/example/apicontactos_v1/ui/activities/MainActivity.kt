@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = binding.rvContactos.adapter as ContactoAdapter
         adapter.onContactClick = { contacto ->
-            val intent = Intent(this, ContactoFormActivity::class.java).apply {
+            val intent = Intent(this, DetalleContactoActivity::class.java).apply {
                 putExtra("contacto", contacto) // Pasar el contacto seleccionado
             }
             startActivity(intent)
