@@ -2,18 +2,24 @@ package com.example.apicontactos_v1.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.apicontactos_v1.ui.viewmodels.ContactosViewModel
 import com.example.apicontactos_v1.databinding.ActivityMainBinding
 import com.example.apicontactos_v1.ui.adapters.ContactoAdapter
+import android.widget.SearchView.OnQueryTextListener
+import com.example.apicontactos_v1.R
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: ContactosViewModel by viewModels()
+    private lateinit var adapter: ContactoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,22 +31,34 @@ class MainActivity : AppCompatActivity() {
         setupObservers()
         viewModel.loadContacts()
 
-        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    viewModel.searchContact(it)
-                }
-                return true
+                // Puedes manejar la búsqueda aquí si es necesario
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    viewModel.searchContact(it)
+                    filterContacts(it)
                 }
                 return true
             }
-        })*/
+        })
+
+
+
+
     }
+    private fun filterContacts(query: String) {
+        val filteredList = viewModel.contactList.value?.filter { contacto ->
+            contacto.name.contains(query, ignoreCase = true) ||
+                    contacto.last_name.contains(query, ignoreCase = true)
+        } ?: emptyList()
+
+        // Filtra usando el adaptador ya inicializado
+        adapter.updateData(filteredList)
+    }
+
 
     private fun setupEventListeners() {
         binding.fabAddContact.setOnClickListener {
@@ -79,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 }
             )
         }
+        adapter = binding.rvContactos.adapter as ContactoAdapter
     }
 
 

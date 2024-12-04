@@ -121,7 +121,6 @@ class ContactosViewModel : ViewModel() {
         )
     }
 
-    // Función para buscar un contacto por nombre
     fun searchContact(query: String) {
         ContactosRepository.searchContactos(query,
             onSuccess = { resultados ->

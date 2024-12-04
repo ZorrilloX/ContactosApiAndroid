@@ -35,8 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageViewProfile"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="8dp"
-                    android:text="Subir foto" />
+                    android:layout_marginTop="10dp"
+                    android:text="Cargar Foto" />
             </RelativeLayout>
 
             <TextView
@@ -68,12 +68,13 @@
                 android:text="+ Agregar teléfono" />
 
             <EditText
-                android:id="@+id/editTextCustomLabel"
+                android:id="@+id/txtNewEtiqueta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="Escribe etiqueta personalizada"
                 android:visibility="gone" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,6 +95,14 @@
                 android:layout_marginTop="8dp"
                 android:text="+ Agregar correo" />
 
+            <EditText
+                android:id="@+id/txtNewEtiquetaEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Escribe etiqueta personalizada"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,13 +115,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="#14A019"
                     android:text="Guardar" />
 
                 <Button
                     android:id="@+id/btnVolver"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Volver" />
+                    android:text="Volver"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

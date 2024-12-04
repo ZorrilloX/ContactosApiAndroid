@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,20 +9,17 @@
     android:padding="10dp"
     tools:context=".ui.activities.MainActivity">
 
-    <!-- ScrollView que permite desplazarse -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <!-- Contenedor de los elementos principales -->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="80dp"> <!-- espacio adicional para el FAB -->
+            android:paddingBottom="80dp">
 
-            <!-- Título Mis contactos -->
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
@@ -32,33 +28,32 @@
                 android:textSize="34sp"
                 android:layout_gravity="center_horizontal"/>
 
-            <!-- EditText para el buscador -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/searchLayout"
+            <!-- Mejora el diseño del SearchView con bordes, sombra y padding -->
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:queryHint="Buscar contactos"
-                    android:iconifiedByDefault="false" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:iconifiedByDefault="false"
+                    android:padding="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/search_view_background" />
+            </FrameLayout>
 
-
-            <!-- RecyclerView para mostrar los contactos -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvContactos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 tools:listitem="@layout/item_contacto" />
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- FloatingActionButton para agregar un contacto -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddContact"
         android:layout_width="wrap_content"

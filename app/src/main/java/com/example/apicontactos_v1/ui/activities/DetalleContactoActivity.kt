@@ -8,9 +8,11 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -164,6 +166,25 @@ class DetalleContactoActivity : AppCompatActivity() {
 
         phoneView.tag = phoneId
 
+        // Obtener el TextView que quieres mostrar u ocultar
+        val textViewLabel = binding.txtNewEtiqueta
+        val textViewLabelEmail = binding.txtNewEtiquetaEmail
+        spinnerLabel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View?, position: Int, id: Long) {
+                if (spinnerLabel.selectedItem == "Etiqueta personalizada") {
+                    textViewLabel.visibility = View.VISIBLE
+                    textViewLabelEmail.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // Aquí puedes definir lo que pasa cuando no se selecciona nada
+                textViewLabel.visibility = View.GONE  // Ejemplo: ocultar el texto cuando no hay selección
+            }
+        }
+
+
+
         // Botón de eliminar para cada teléfono
         val deleteButton = phoneView.findViewById<View>(R.id.btnDeletephone)
         deleteButton.setOnClickListener {
@@ -235,8 +256,12 @@ class DetalleContactoActivity : AppCompatActivity() {
             val editTextNumber = phoneField.findViewById<EditText>(R.id.editTextPhoneNumber)
             val spinnerLabel = phoneField.findViewById<Spinner>(R.id.spinnerLabel)
             val phoneNumber = editTextNumber.text.toString()
-            val label = spinnerLabel.selectedItem.toString()
+            var label = spinnerLabel.selectedItem.toString()
             val phoneId = phoneField.tag as? Long
+            //si textViewLabel tiene algo reemplazar con label:
+            if (binding.txtNewEtiqueta.visibility == View.VISIBLE) {
+                label = binding.txtNewEtiqueta.text.toString()
+            }
 
             if (phoneNumber.isNotBlank()) {
                 val telefono = Telefono(id = phoneId, number = phoneNumber, persona_id = contacto.id, label = label)
@@ -275,7 +300,6 @@ class DetalleContactoActivity : AppCompatActivity() {
                 viewModel.addEmail(correo)
             }
         }
-
         finish()
     }
 }
